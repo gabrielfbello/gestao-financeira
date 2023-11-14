@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Lançamentos</title>
+</head>
+<body>
+<h1>Lista de Lançamentos</h1>
+<div>
+    <a href="/lancamentos/novo">Adicionar Novo Lançamento</a>
+</div>
+
+<!--  Futuramente o formulário de filtro por data -->
+
+<table>
+    <tr>
+        <th>Valor</th>
+        <th>Data</th>
+        <!--  cabeçalhos para tipo e categoria -->
+    </tr>
+    <tr th:each="lancamento : ${lancamentos}">
+        <td th:text="${lancamento.valor}">Valor do Lançamento</td>
+        <td th:text="${lancamento.data}">Data do Lançamento</td>
+        <!--  campos para tipo e categoria -->
+    </tr>
+</table>
+</body>
+</html>
