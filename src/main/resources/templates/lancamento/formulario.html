@@ -11,7 +11,19 @@
     <label for="data">Data:</label>
     <input type="date" id="data" th:field="*{data}" />
 
-    <!-- Adicionar campos para tipo e categoria -->
+    <label for="tipo">Tipo:</label>
+    <select id="tipo" th:field="*{tipo}">
+        <option value="RECEITA">Receita</option>
+        <option value="DESPESA">Despesa</option>
+    </select>
+
+    <label for="categoria">Categoria:</label>
+    <select id="categoria" th:field="*{categoria}">
+        <option th:each="categoria : ${categorias}"
+                th:value="${categoria.id}"
+                th:text="${categoria.nome}">Categoria</option>
+    </select>
+
     <button type="submit">Salvar</button>
 </form>
 </body>

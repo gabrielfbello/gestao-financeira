@@ -24,6 +24,7 @@ public class HomeController {
     public String home(Model model) {
         BigDecimal totalReceitas = lancamentoService.getTotalReceitas();
         BigDecimal totalDespesas = lancamentoService.getTotalDespesas();
+        BigDecimal saldoLiquido = totalReceitas.subtract(totalDespesas);
 
         if (totalReceitas == null) {
             totalReceitas = BigDecimal.ZERO;
@@ -31,8 +32,10 @@ public class HomeController {
         if (totalDespesas == null) {
             totalDespesas = BigDecimal.ZERO;
         }
+        if (saldoLiquido == null) {
+            saldoLiquido = BigDecimal.ZERO;
+        }
 
-        BigDecimal saldoLiquido = totalReceitas.subtract(totalDespesas);
         List<Lancamento> ultimosLancamentos = lancamentoService.findLast10();
 
         model.addAttribute("totalReceitas", totalReceitas);

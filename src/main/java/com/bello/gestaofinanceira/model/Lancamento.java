@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -20,17 +21,16 @@ public class Lancamento {
 
     private BigDecimal valor;
 
-    private Date data;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date data;;
 
     @Enumerated(EnumType.STRING)
-    private TipoLancamento tipo; // TipoLancamento é um enum para RECEITA e DESPESA
+    private TipoLancamento tipo;
 
     @ManyToOne
     private Categoria categoria;
 
-    // Construtores
-    public Lancamento() {
-    }
+    public Lancamento() {}
 
     public Lancamento(BigDecimal valor, Date data, TipoLancamento tipo, Categoria categoria) {
         this.valor = valor;
@@ -39,7 +39,6 @@ public class Lancamento {
         this.categoria = categoria;
     }
 
-    // Getters e setters
     public Long getId() {
         return id;
     }
