@@ -1,14 +1,57 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Gestão Financeira Pessoal</title>
+    <meta charset="UTF-8">
+    <title>Home - Gestão Financeira Pessoal</title>
+    <!-- Inserir aqui seu arquivo CSS para estilização -->
 </head>
 <body>
-<h1>Bem-vindo à Gestão Financeira Pessoal</h1>
+<h1>Painel de Controle - Gestão Financeira</h1>
+
+<div id="totalizadores">
+    <h2>Totalizadores</h2>
+    <div id="receitas">
+        <label>Total de Receitas:</label>
+        <span th:text="${totalReceitas}">0.00</span>
+    </div>
+    <div id="despesas">
+        <label>Total de Despesas:</label>
+        <span th:text="${totalDespesas}">0.00</span>
+    </div>
+    <div id="saldo">
+        <label>Saldo Líquido:</label>
+        <span th:text="${saldoLiquido}">0.00</span>
+    </div>
+</div>
+
+<div id="ultimos-lancamentos">
+    <h2>Últimos Lançamentos</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Data</th>
+            <th>Categoria</th>
+            <th>Descrição</th>
+            <th>Valor</th>
+            <th>Tipo</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="lancamento : ${ultimosLancamentos}">
+            <td th:text="${lancamento.data}">01/01/2022</td>
+            <td th:text="${lancamento.categoria.nome}">Categoria</td>
+            <td th:text="${lancamento.descricao}">Descrição</td>
+            <td th:text="${lancamento.valor}">R$ 100,00</td>
+            <td th:text="${lancamento.tipo}">Receita</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
 <div>
     <a href="/categorias">Gerenciar Categorias</a>
     <a href="/lancamentos">Gerenciar Lançamentos</a>
 </div>
+
 </body>
 </html>
